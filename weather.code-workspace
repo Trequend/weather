@@ -1,0 +1,24 @@
+{
+  "folders": [
+    { "name": "root", "path": "." },
+    { "name": "app", "path": "./app" },
+    { "name": "api", "path": "./api" }
+  ],
+  "extensions": {
+    "recommendations": [
+      "editorconfig.editorconfig",
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode"
+    ]
+  },
+  "settings": {
+    "search.exclude": {
+      "**/.yarn": true
+    },
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+  }
+}

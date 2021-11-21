@@ -1,0 +1,38 @@
+{
+  "name": "weather",
+  "version": "0.1.0",
+  "private": true,
+  "description": "React Native app for weather",
+  "bugs": {
+    "url": "https://github.com/Trequend/fancywork/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Trequend/fancywork.git"
+  },
+  "license": "MIT",
+  "author": "Dmitry Balakin",
+  "workspaces": [
+    "api",
+    "app"
+  ],
+  "scripts": {
+    "commitlint": "commitlint",
+    "format": "prettier --write .",
+    "postinstall": "node ./utils/is-ci.js || husky install",
+    "lint": "prettier --check . && yarn workspaces foreach -piv --since run lint",
+    "pre-commit": "yarn run lint"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "dependencies": {
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
+    "husky": "^7.0.4",
+    "prettier": "^2.4.1"
+  },
+  "packageManager": "yarn@3.1.0"
+}
