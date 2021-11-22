@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { CacheModule, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CitiesModule } from './cities/cities.module';
@@ -7,6 +7,11 @@ import { WeatherModule } from './weather/weather.module';
 
 @Module({
   imports: [
+    CacheModule.register({
+      isGlobal: true,
+      ttl: 30 * 60 * 1000, // 30 MIN,
+      max: 1000,
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
       load: [configuration],

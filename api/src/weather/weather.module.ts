@@ -1,11 +1,10 @@
 import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
-import { CacheModule } from 'src/cache/cache.module';
 import { WeatherController } from './controllers/weather.controller';
 import { WeatherService } from './services/weather.service';
 
 @Module({
-  imports: [HttpModule, CacheModule],
+  imports: [HttpModule],
   providers: [WeatherService],
   controllers: [WeatherController],
 })
