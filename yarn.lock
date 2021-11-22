@@ -4102,6 +4102,7 @@ __metadata:
     eslint-plugin-react: 7.26.1
     eslint-plugin-react-hooks: 4.2.0
     expo: ~43.0.2
+    expo-location: ~13.0.4
     expo-status-bar: ~1.1.0
     expo-yarn-workspaces: ^1.6.0
     react: 17.0.1
@@ -7716,6 +7717,17 @@ __metadata:
   peerDependencies:
     expo: "*"
   checksum: d2cd813b3af21cdba5d20db45163a81216c9e19bfdd087dddbc1bfc292494f3610f67d24850b587e4286508ca9e4fb360e5d9e19a8e6abb169182872052d38d4
+  languageName: node
+  linkType: hard
+
+"expo-location@npm:~13.0.4":
+  version: 13.0.4
+  resolution: "expo-location@npm:13.0.4"
+  dependencies:
+    "@expo/config-plugins": ^4.0.2
+    expo-modules-core: ~0.4.4
+    unimodules-task-manager-interface: 7.0.3
+  checksum: 96185f3c61c2445b0085bb0f0b02212577f37c69555700e9fe89bda6b4d306668e588aee209a8aec2e5460e9329f40a8cb0b92cbaa0985a8b9fc925b42f845e8
   languageName: node
   linkType: hard
 
@@ -16782,6 +16794,15 @@ __metadata:
   version: 2.0.0
   resolution: "unicode-property-aliases-ecmascript@npm:2.0.0"
   checksum: dda4d39128cbbede2ac60fbb85493d979ec65913b8a486bf7cb7a375a2346fa48cbf9dc6f1ae23376e7e8e684c2b411434891e151e865a661b40a85407db51d0
+  languageName: node
+  linkType: hard
+
+"unimodules-task-manager-interface@npm:7.0.3":
+  version: 7.0.3
+  resolution: "unimodules-task-manager-interface@npm:7.0.3"
+  dependencies:
+    expo-modules-core: ~0.4.4
+  checksum: dd9a5a40f7829d792974ce7a390db075d73836143e1edc9f71a2eebfa621b5ba2da47aa1805be3f1db21e7fb930aec280d645fe7d81149b9e776ad2b78f797e7
   languageName: node
   linkType: hard
 
