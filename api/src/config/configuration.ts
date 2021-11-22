@@ -9,6 +9,7 @@ export const configuration = () => {
     port: environment.PORT || 8000,
     mongoUrl: environment.MONGO_URL || 'mongodb://localhost:27017',
     mongoDBName: environment.MONGO_DB_NAME || 'weather',
+    openWeatherKey: environment.OPEN_WEATHER_KEY,
   };
 };
 

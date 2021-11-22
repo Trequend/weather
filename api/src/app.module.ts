@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { CacheModule } from './cache/cache.module';
 import { CitiesModule } from './cities/cities.module';
 import { Config, configuration } from './config/configuration';
+import { WeatherModule } from './weather/weather.module';
 
 @Module({
   imports: [
@@ -19,8 +19,8 @@ import { Config, configuration } from './config/configuration';
       }),
       inject: [ConfigService],
     }),
-    CacheModule,
     CitiesModule,
+    WeatherModule,
   ],
   controllers: [],
   providers: [],

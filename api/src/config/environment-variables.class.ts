@@ -29,4 +29,8 @@ export class EnvironmentVariables {
   @IsString()
   @IsOptional()
   MONGO_DB_NAME?: string;
+
+  @IsString()
+  @IsOptional()
+  OPEN_WEATHER_KEY?: string;
 }
