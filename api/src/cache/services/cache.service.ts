@@ -29,4 +29,8 @@ export class CacheService {
   public async delete(key: string) {
     await this.model.deleteOne({ key }).exec();
   }
+
+  public async deleteMany(regex: RegExp) {
+    await this.model.deleteMany({ key: { $regex: regex } }).exec();
+  }
 }
