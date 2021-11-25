@@ -1,4 +1,6 @@
 /.yarn
-__generated__
-.expo
-dist
+/api/dist
+/app/build
+/app/platforms
+/app/plugins
+/app/www

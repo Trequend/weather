@@ -7,7 +7,7 @@
 </h1>
 
 <p align="center">
-  React Native app for weather
+  Cordova app for weather
 </p>
 
 ## Table Of Contents

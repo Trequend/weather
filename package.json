@@ -20,8 +20,8 @@
     "commitlint": "commitlint",
     "format": "prettier --write .",
     "postinstall": "node ./utils/is-ci.js || husky install",
-    "lint": "prettier --check . && yarn workspaces foreach -piv --since run lint",
-    "pre-commit": "yarn run lint"
+    "lint-project": "prettier --check . && yarn workspaces foreach -piv run lint",
+    "pre-commit": "prettier --check . && yarn workspaces foreach -piv --since run lint"
   },
   "commitlint": {
     "extends": [
