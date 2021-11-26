@@ -37,7 +37,7 @@ export class CitiesController {
       offset = 0;
     }
 
-    return await this.service.search(query, {
+    return this.service.search(query, {
       offset,
       limit,
     });

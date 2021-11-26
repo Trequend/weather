@@ -22,8 +22,13 @@ export const CityWeather: FC<CityWeatherProps> = ({ id }) => {
     const action = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_WEATHER_API}/weather/${id}`
+          `${process.env.REACT_APP_WEATHER_API}/cities/${id}`
         );
+
+        if (!response.ok) {
+          throw new Error('Fetch error');
+        }
+
         const json = await response.json();
         setCity(json);
       } catch (error) {

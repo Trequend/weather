@@ -3,7 +3,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CitiesModule } from './cities/cities.module';
 import { Config, configuration } from './config/configuration';
-import { WeatherModule } from './weather/weather.module';
 
 @Module({
   imports: [
@@ -25,7 +24,6 @@ import { WeatherModule } from './weather/weather.module';
       inject: [ConfigService],
     }),
     CitiesModule,
-    WeatherModule,
   ],
   controllers: [],
   providers: [],

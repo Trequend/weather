@@ -1,3 +1,4 @@
+import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CitiesController } from './controllers/cities.controller';
@@ -6,6 +7,7 @@ import { CitiesService } from './services/cities.service';
 
 @Module({
   imports: [
+    HttpModule,
     MongooseModule.forFeature([{ name: City.name, schema: CitySchema }]),
   ],
   providers: [CitiesService],

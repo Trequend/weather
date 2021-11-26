@@ -1,12 +1,16 @@
+import { HttpService } from '@nestjs/axios';
 import {
   Injectable,
   InternalServerErrorException,
   Logger,
   OnModuleInit,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { InjectModel } from '@nestjs/mongoose';
 import fs from 'fs/promises';
 import { Model } from 'mongoose';
+import { concatAll, from, map } from 'rxjs';
+import { Config } from 'src/config/configuration';
 import util from 'util';
 import zlib from 'zlib';
 import { City } from '../schema/city.schema';
@@ -23,7 +27,9 @@ export class CitiesService implements OnModuleInit {
   private readonly logger = new Logger(CitiesService.name);
 
   public constructor(
-    @InjectModel(City.name) private readonly model: Model<City>
+    @InjectModel(City.name) private readonly model: Model<City>,
+    private httpService: HttpService,
+    private readonly config: ConfigService<Config>
   ) {}
 
   onModuleInit() {
@@ -63,16 +69,45 @@ export class CitiesService implements OnModuleInit {
       .limit(limit)
       .exec();
 
-    return {
-      total,
-      cities,
-    };
+    return new Promise((resolve, reject) => {
+      const list = [];
+
+      return from(cities)
+        .pipe(
+          map((city) => {
+            return this.getCity(city.id);
+          }),
+          concatAll(),
+          concatAll()
+        )
+        .subscribe({
+          next: (city) => {
+            list.push(city);
+          },
+          complete: () => {
+            resolve({
+              total,
+              cities: list,
+            });
+          },
+          error: (error) => {
+            reject(error);
+          },
+        });
+    });
   }
 
   public async getCity(openWeatherId: string) {
-    this.throwIfNotInitialized();
-    const city = await this.model.findOne({ id: openWeatherId }).exec();
-    return city?.toObject();
+    const openWeatherKey = this.config.get('openWeatherKey');
+    if (!openWeatherKey) {
+      throw new InternalServerErrorException('No key');
+    }
+
+    return this.httpService
+      .get(`https://api.openweathermap.org/data/2.5/weather`, {
+        params: { id: openWeatherId, appid: openWeatherKey },
+      })
+      .pipe(map((response) => response.data));
   }
 
   private async throwIfNotInitialized() {
