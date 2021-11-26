@@ -1,0 +1,24 @@
+.root {
+  padding: 15px 20px;
+  border-radius: 11px;
+  background-color: #fdfcfc;
+}
+
+.title {
+  color: #c4c4c4;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+
+.widget {
+  margin-bottom: 16px;
+}
+
+.info {
+  font-size: 10px;
+}
+
+.info > span {
+  color: #9a9a9a;
+}

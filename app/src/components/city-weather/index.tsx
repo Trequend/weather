@@ -1,12 +1,17 @@
 import { FC } from 'react';
-import { MainWeatherBlock, GeneralWeatherBlock } from '../weather-blocks';
+import {
+  MainWeatherBlock,
+  GeneralWeatherBlock,
+  DayWeatherBlock,
+} from '../weather-blocks';
 import classes from './index.module.css';
 
 export const CityWeather: FC = () => {
   return (
     <div>
       <MainWeatherBlock className={classes.main} />
-      <GeneralWeatherBlock />
+      <GeneralWeatherBlock className={classes.general} />
+      <DayWeatherBlock />
     </div>
   );
 };

@@ -9,7 +9,7 @@ export type LabeledBlockProps = {
 export const LabeledBlock: FC<LabeledBlockProps> = ({ label, content }) => {
   return (
     <div className={classes.root}>
-      <h3 className={classes.label}>{label}</h3>
+      <h4 className={classes.label}>{label}</h4>
       <p className={classes.content}>{content}</p>
     </div>
   );
