@@ -1,10 +1,18 @@
 import { FC } from 'react';
 import classes from './index.module.css';
-import { ReactComponent as VectorIcon } from '../../assets/vector.svg';
+import { ReactComponent as VectorIcon } from '../../../assets/vector.svg';
 
-export const MainWeatherBlock: FC = () => {
+export type MainWeatherBlockProps = {
+  className?: string;
+};
+
+export const MainWeatherBlock: FC<MainWeatherBlockProps> = ({ className }) => {
+  const rootClassName = className
+    ? `${className} ${classes.root}`
+    : classes.root;
+
   return (
-    <div className={classes.root}>
+    <div className={rootClassName}>
       <img className={classes.icon} src="icons/01d.png" alt="Weather icon" />
       <h2 className={classes.city}>
         Moscow

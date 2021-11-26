@@ -2,21 +2,21 @@ import { FC } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination } from 'swiper';
 import classes from './index.module.css';
-import { MainWeatherBlock } from '../main-weather-block';
+import { CityWeather } from '../city-weather';
 
 SwiperCore.use([Pagination]);
 
 export const CitiesSlider: FC = () => {
   return (
-    <Swiper pagination className={classes.swiper}>
+    <Swiper pagination spaceBetween={30} className={classes.swiper}>
       <SwiperSlide>
-        <MainWeatherBlock />
+        <CityWeather />
       </SwiperSlide>
       <SwiperSlide>
-        <MainWeatherBlock />
+        <CityWeather />
       </SwiperSlide>
       <SwiperSlide>
-        <MainWeatherBlock />
+        <CityWeather />
       </SwiperSlide>
     </Swiper>
   );

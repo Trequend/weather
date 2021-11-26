@@ -1,0 +1,15 @@
+.root {
+  text-align: center;
+}
+
+.label {
+  color: #c4c4c4;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.content {
+  color: #9a9a9a;
+  font-weight: 500;
+  font-size: 15px;
+}

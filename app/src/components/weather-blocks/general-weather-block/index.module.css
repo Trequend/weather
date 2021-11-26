@@ -1,0 +1,7 @@
+.root {
+  padding: 10px;
+  background-color: #fdfcfc;
+  border-radius: 11px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
