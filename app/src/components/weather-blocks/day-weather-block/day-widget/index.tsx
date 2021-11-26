@@ -7,14 +7,16 @@ export type DayWidgetProps = {
   className?: string;
   sunrise: Date;
   sunset: Date;
-  weatherIconSrc: string;
+  timezone: number;
+  weatherIcon: string;
 };
 
 export const DayWidget: FC<DayWidgetProps> = ({
   className,
   sunrise,
   sunset,
-  weatherIconSrc,
+  timezone,
+  weatherIcon,
 }) => {
   const date = useInterval(1000);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -37,9 +39,9 @@ export const DayWidget: FC<DayWidgetProps> = ({
 
   useEffect(() => {
     if (widgetCanvas !== null) {
-      widgetCanvas.draw(sunrise, sunset, weatherIconSrc);
+      widgetCanvas.draw(sunrise, sunset, weatherIcon, timezone);
     }
-  }, [sunrise, sunset, weatherIconSrc, date, widgetCanvas, screenSize]);
+  }, [sunrise, sunset, weatherIcon, timezone, date, widgetCanvas, screenSize]);
 
   const rootClassName = className
     ? `${className} ${classes.root}`

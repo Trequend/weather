@@ -1,6 +1,5 @@
-import { startOfDay } from 'date-fns';
-import { addHours, addMinutes } from 'date-fns/esm';
 import { FC } from 'react';
+import { getTimezoneTime } from '../../../functions';
 import { useInterval } from '../../../hooks';
 import { DayWidget } from './day-widget';
 import { formatDeltaTime } from './formatDeltaTime';
@@ -8,16 +7,22 @@ import classes from './index.module.css';
 
 export type DayWeatherBlockProps = {
   className?: string;
+  sunrise: Date;
+  sunset: Date;
+  timezone: number;
+  weatherIcon: string;
 };
 
-export const DayWeatherBlock: FC<DayWeatherBlockProps> = ({ className }) => {
+export const DayWeatherBlock: FC<DayWeatherBlockProps> = ({
+  className,
+  sunrise,
+  sunset,
+  timezone,
+  weatherIcon,
+}) => {
   const rootClassName = className
     ? `${className} ${classes.root}`
     : classes.root;
-
-  const base = startOfDay(new Date());
-  const sunrise = addMinutes(addHours(base, 6), 34);
-  const sunset = addMinutes(addHours(base, 20), 12);
 
   return (
     <div className={rootClassName}>
@@ -25,28 +30,43 @@ export const DayWeatherBlock: FC<DayWeatherBlockProps> = ({ className }) => {
       <DayWidget
         sunrise={sunrise}
         sunset={sunset}
-        weatherIconSrc={'icons/01d.png'}
+        timezone={timezone}
+        weatherIcon={weatherIcon}
         className={classes.widget}
       />
       <p className={classes.info}>
         <span>Length of day:</span> {formatDeltaTime(sunrise, sunset)}
       </p>
-      <RemainingDaylight date={sunset} />
+      <RemainingDaylight
+        sunrise={sunrise}
+        sunset={sunset}
+        timezone={timezone}
+      />
     </div>
   );
 };
 
 type RemainingDaylightProps = {
-  date: Date;
+  sunrise: Date;
+  sunset: Date;
+  timezone: number;
 };
 
-const RemainingDaylight: FC<RemainingDaylightProps> = ({ date }) => {
+const RemainingDaylight: FC<RemainingDaylightProps> = ({
+  sunrise,
+  sunset,
+  timezone,
+}) => {
   const now = useInterval(1000);
+  const time = getTimezoneTime(now, timezone);
 
-  if (now.getTime() < date.getTime()) {
+  if (
+    time.getTime() < sunset.getTime() &&
+    time.getTime() >= sunrise.getTime()
+  ) {
     return (
       <p className={classes.info}>
-        <span>Remaining daylight:</span> {formatDeltaTime(now, date)}
+        <span>Remaining daylight:</span> {formatDeltaTime(time, sunset)}
       </p>
     );
   } else {

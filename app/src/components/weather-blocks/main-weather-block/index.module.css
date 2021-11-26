@@ -5,6 +5,11 @@
   justify-content: center;
 }
 
+.icon {
+  width: 200px;
+  height: 200px;
+}
+
 .city {
   font-size: 30px;
   font-weight: 600;

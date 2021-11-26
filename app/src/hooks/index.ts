@@ -1,2 +1,2 @@
-export { useInterval } from './useInterval';
-export { useScreenSize } from './useScreenSize';
+export { useInterval } from './use-interval';
+export { useScreenSize } from './use-screen-size';

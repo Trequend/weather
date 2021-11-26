@@ -1,4 +1,5 @@
 import { format, startOfDay, endOfDay } from 'date-fns';
+import { getIconSrc, getTimezoneTime } from '../../../../../functions';
 import { BezierCurveVector2 } from './bezier-curve';
 import { Vector2 } from './vector2.class';
 
@@ -14,7 +15,7 @@ type DrawContext = {
   sunrise: Date;
   sunset: Date;
   now: Date;
-  weatherIconSrc: string;
+  weatherIcon: string;
 };
 
 export class DayWidgetCanvas {
@@ -33,9 +34,19 @@ export class DayWidgetCanvas {
     this.image = new Image();
   }
 
-  public draw(sunrise: Date, sunset: Date, weatherIconSrc: string) {
+  public draw(
+    sunrise: Date,
+    sunset: Date,
+    weatherIcon: string,
+    timezone: number
+  ) {
     this.resize();
-    const drawContext = this.createDrawContext(sunrise, sunset, weatherIconSrc);
+    const drawContext = this.createDrawContext(
+      sunrise,
+      sunset,
+      weatherIcon,
+      timezone
+    );
     this.context.clearRect(0, 0, drawContext.width, drawContext.height);
     this.drawLines(drawContext);
     this.drawSegments(drawContext);
@@ -57,7 +68,8 @@ export class DayWidgetCanvas {
   private createDrawContext(
     sunrise: Date,
     sunset: Date,
-    weatherIconSrc: string
+    weatherIcon: string,
+    timezone: number
   ): DrawContext {
     const { width, height } = this.context.canvas.getBoundingClientRect();
     const startDay = startOfDay(sunrise);
@@ -78,8 +90,8 @@ export class DayWidgetCanvas {
       endDaylight,
       sunrise,
       sunset,
-      now: new Date(),
-      weatherIconSrc,
+      now: getTimezoneTime(new Date(), timezone),
+      weatherIcon,
     };
   }
 
@@ -131,7 +143,7 @@ export class DayWidgetCanvas {
       sunrise,
       sunset,
       now,
-      weatherIconSrc,
+      weatherIcon,
       top,
       horizon,
       width,
@@ -189,12 +201,13 @@ export class DayWidgetCanvas {
       );
     };
 
-    if (this.image.src.indexOf(weatherIconSrc) !== -1) {
+    const src = getIconSrc(weatherIcon, sunrise, sunset);
+    if (this.image.src.indexOf(src) !== -1) {
       drawImage();
       return;
     }
 
-    this.image.src = weatherIconSrc;
+    this.image.src = src;
     this.image.onload = drawImage;
   }
 

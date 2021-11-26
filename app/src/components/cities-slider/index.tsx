@@ -10,13 +10,13 @@ export const CitiesSlider: FC = () => {
   return (
     <Swiper pagination spaceBetween={30} className={classes.swiper}>
       <SwiperSlide>
-        <CityWeather />
+        <CityWeather id={524901} />
       </SwiperSlide>
       <SwiperSlide>
-        <CityWeather />
+        <CityWeather id={551487} />
       </SwiperSlide>
       <SwiperSlide>
-        <CityWeather />
+        <CityWeather id={2022890} />
       </SwiperSlide>
     </Swiper>
   );
