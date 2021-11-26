@@ -13,6 +13,8 @@ async function execPostReactBuild(buildFolderPath, outputFolderPath) {
     } else {
       await fs.rename(buildFolderPath, outputFolderPath);
     }
+
+    fs.writeFile(path.join(outputFolderPath, '.gitkeep'), '');
   } else {
     throw new Error('build folder does not exist');
   }
