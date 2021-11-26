@@ -1,14 +1,20 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import 'swiper/swiper-bundle.min.css';
+import 'swiper/swiper.min.css';
+import './styles/style.css';
 import reportWebVitals from './reportWebVitals';
+import { HashRouter, Routes, Route } from 'react-router-dom';
+import { pages } from './pages';
 
 function renderReactDom() {
   ReactDOM.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
+    <HashRouter>
+      <Routes>
+        {pages.map((Page) => (
+          <Route key={Page.pathname} path={Page.pathname} element={<Page />} />
+        ))}
+      </Routes>
+    </HashRouter>,
     document.getElementById('root')
   );
 }

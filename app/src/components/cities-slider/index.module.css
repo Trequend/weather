@@ -1,0 +1,26 @@
+.slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper {
+  width: 100%;
+}
+
+.swiper :global(.swiper-pagination) {
+  position: static;
+  margin-bottom: 40px;
+}
+
+.swiper :global(.swiper-pagination-bullet) {
+  background-color: #c4c4c4;
+  opacity: 1;
+}
+
+.swiper :global(.swiper-pagination-bullet-active) {
+  background-color: #001f70;
+}
