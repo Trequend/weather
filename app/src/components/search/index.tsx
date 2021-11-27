@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
-import classes from './index.module.css';
+import { ReactComponent as CloseIcon } from '../../assets/close.svg';
 import { ReactComponent as SearchIcon } from '../../assets/search.svg';
+import classes from './index.module.css';
 
 export type SearchProps = {
   onSearch?: (query: string) => void;
@@ -26,6 +27,17 @@ export const Search: FC<SearchProps> = ({ onSearch }) => {
           setQuery(event.target.value);
         }}
       />
+      <button
+        type="button"
+        style={{ opacity: query ? 1 : 0 }}
+        className={classes.button}
+        onClick={() => {
+          setQuery('');
+          onSearch && onSearch('');
+        }}
+      >
+        <CloseIcon />
+      </button>
       <button className={classes.button} type="submit">
         <SearchIcon />
       </button>
