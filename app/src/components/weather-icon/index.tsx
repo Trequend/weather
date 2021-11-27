@@ -8,6 +8,7 @@ export type WeatherIconProps = {
   description: string;
   sunrise: Date;
   sunset: Date;
+  timezone: number;
 };
 
 export const WeatherIcon: FC<WeatherIconProps> = ({
@@ -16,13 +17,14 @@ export const WeatherIcon: FC<WeatherIconProps> = ({
   description,
   sunrise,
   sunset,
+  timezone,
 }) => {
   useInterval(1000);
 
   return (
     <img
       className={className}
-      src={getIconSrc(icon, sunrise, sunset)}
+      src={getIconSrc(icon, sunrise, sunset, timezone)}
       alt={description}
     />
   );

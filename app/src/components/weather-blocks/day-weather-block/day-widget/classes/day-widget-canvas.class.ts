@@ -15,6 +15,7 @@ type DrawContext = {
   sunrise: Date;
   sunset: Date;
   now: Date;
+  timezone: number;
   weatherIcon: string;
 };
 
@@ -91,6 +92,7 @@ export class DayWidgetCanvas {
       sunrise,
       sunset,
       now: getTimezoneTime(new Date(), timezone),
+      timezone,
       weatherIcon,
     };
   }
@@ -143,6 +145,7 @@ export class DayWidgetCanvas {
       sunrise,
       sunset,
       now,
+      timezone,
       weatherIcon,
       top,
       horizon,
@@ -201,7 +204,7 @@ export class DayWidgetCanvas {
       );
     };
 
-    const src = getIconSrc(weatherIcon, sunrise, sunset);
+    const src = getIconSrc(weatherIcon, sunrise, sunset, timezone);
     if (this.image.src.indexOf(src) !== -1) {
       drawImage();
       return;

@@ -75,6 +75,7 @@ export const CityWeather: FC<CityWeatherProps> = ({ id }) => {
           weatherDescription={weather.description}
           sunrise={sunrise}
           sunset={sunset}
+          timezone={city.timezone}
           className={classes.main}
         />
         <GeneralWeatherBlock

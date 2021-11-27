@@ -13,6 +13,7 @@ export type MainWeatherBlockProps = {
   weatherDescription: string;
   sunrise: Date;
   sunset: Date;
+  timezone: number;
 };
 
 export const MainWeatherBlock: FC<MainWeatherBlockProps> = ({
@@ -25,6 +26,7 @@ export const MainWeatherBlock: FC<MainWeatherBlockProps> = ({
   weatherDescription,
   sunrise,
   sunset,
+  timezone,
 }) => {
   const rootClassName = className
     ? `${className} ${classes.root}`
@@ -38,6 +40,7 @@ export const MainWeatherBlock: FC<MainWeatherBlockProps> = ({
         description={weatherDescription}
         sunrise={sunrise}
         sunset={sunset}
+        timezone={timezone}
       />
       <h2 className={classes.city}>
         {name}
