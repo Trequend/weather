@@ -1,23 +1,30 @@
 import { FC } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Button, CityWeather } from '..';
+import { useCitiesIdsList } from '../../hooks';
 import classes from './index.module.css';
-import { CityWeather } from '../city-weather';
 
 SwiperCore.use([Pagination]);
 
 export const CitiesSlider: FC = () => {
+  const { ids, removeId } = useCitiesIdsList();
+
   return (
     <Swiper pagination spaceBetween={30} className={classes.swiper}>
-      <SwiperSlide>
-        <CityWeather id={524901} />
-      </SwiperSlide>
-      <SwiperSlide>
-        <CityWeather id={551487} />
-      </SwiperSlide>
-      <SwiperSlide>
-        <CityWeather id={2022890} />
-      </SwiperSlide>
+      {ids.map((id) => (
+        <SwiperSlide key={id}>
+          <CityWeather id={id} />
+          <Button
+            className={classes.button}
+            onClick={() => {
+              removeId(id);
+            }}
+          >
+            Remove
+          </Button>
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 };

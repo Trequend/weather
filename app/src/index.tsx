@@ -3,18 +3,28 @@ import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
 import './styles/style.css';
 import reportWebVitals from './reportWebVitals';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { HashRouter, Routes, Route, BrowserRouter } from 'react-router-dom';
 import { pages } from './pages';
+import { store } from './app/store';
+
+const Router = (window as any).cordova ? HashRouter : BrowserRouter;
 
 function renderReactDom() {
   ReactDOM.render(
-    <HashRouter>
-      <Routes>
-        {pages.map((Page) => (
-          <Route key={Page.pathname} path={Page.pathname} element={<Page />} />
-        ))}
-      </Routes>
-    </HashRouter>,
+    <Provider store={store}>
+      <Router>
+        <Routes>
+          {pages.map((Page) => (
+            <Route
+              key={Page.pathname}
+              path={Page.pathname}
+              element={<Page />}
+            />
+          ))}
+        </Routes>
+      </Router>
+    </Provider>,
     document.getElementById('root')
   );
 }

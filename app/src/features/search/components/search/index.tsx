@@ -1,21 +1,25 @@
 import { FC, useState } from 'react';
-import { ReactComponent as CloseIcon } from '../../assets/close.svg';
-import { ReactComponent as SearchIcon } from '../../assets/search.svg';
+import { ReactComponent as CloseIcon } from '../../../../assets/close.svg';
+import { ReactComponent as SearchIcon } from '../../../../assets/search.svg';
+import { useAppDispatch, useAppSelector } from '../../../../hooks';
+import { CITIES_SEARCH_LIMIT } from '../../constants';
+import { searchActions } from '../../slice';
 import classes from './index.module.css';
 
-export type SearchProps = {
-  onSearch?: (query: string) => void;
-};
-
-export const Search: FC<SearchProps> = ({ onSearch }) => {
-  const [query, setQuery] = useState('');
+export const Search: FC = () => {
+  const dispatch = useAppDispatch();
+  const { query: appQuery } = useAppSelector((state) => state.search);
+  const [query, setQuery] = useState(appQuery);
 
   return (
     <form
       className={classes.root}
       onSubmit={(event) => {
         event.preventDefault();
-        onSearch && onSearch(query);
+        dispatch(searchActions.setQuery(query));
+        dispatch(
+          searchActions.fetchCities({ offset: 0, limit: CITIES_SEARCH_LIMIT })
+        );
       }}
     >
       <input
@@ -33,7 +37,7 @@ export const Search: FC<SearchProps> = ({ onSearch }) => {
         className={classes.button}
         onClick={() => {
           setQuery('');
-          onSearch && onSearch('');
+          dispatch(searchActions.clear());
         }}
       >
         <CloseIcon />

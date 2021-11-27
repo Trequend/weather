@@ -26,3 +26,7 @@
 .swiper :global(.swiper-pagination-bullet-active) {
   background-color: #001f70;
 }
+
+.button {
+  margin-top: 10px;
+}

@@ -1,0 +1,36 @@
+.root {
+  padding: 44px 24px 24px 24px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.add,
+.added {
+  display: flex;
+  align-items: center;
+  background: #fdfcfc;
+  border-radius: 7px;
+  padding: 12px 14px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.added {
+  background: #009456;
+  color: #fff;
+}
+
+.add > *:last-child,
+.added > *:last-child {
+  margin-left: 7px;
+}

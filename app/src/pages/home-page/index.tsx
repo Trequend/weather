@@ -1,18 +1,33 @@
-import { useState } from 'react';
-import { CitiesSlider, Search, SearchResult } from '../../components';
+import { CitiesSlider } from '../../components';
+import { Search, SearchResult } from '../../features/search/components';
+import { useAppSelector } from '../../hooks';
 import { AppPage } from '../../types';
 import { HOME_PATHNAME } from './constants';
 import classes from './index.module.css';
 
 export const HomePage: AppPage = () => {
-  const [query, setQuery] = useState('');
+  const query = useAppSelector((state) => state.search.query);
 
   return (
     <div className={classes.root}>
       <header className={classes.header}>
-        <Search onSearch={setQuery} />
+        <Search />
       </header>
-      <main>{query ? <SearchResult query={query} /> : <CitiesSlider />}</main>
+      <main className={classes.main}>
+        {query ? <SearchResult /> : <CitiesSlider />}
+      </main>
+      {query ? null : (
+        <footer className={classes.footer}>
+          Logo icon made by{' '}
+          <a href="https://www.freepik.com" title="Freepik">
+            Freepik
+          </a>{' '}
+          from{' '}
+          <a href="https://www.flaticon.com/" title="Flaticon">
+            www.flaticon.com
+          </a>
+        </footer>
+      )}
     </div>
   );
 };
