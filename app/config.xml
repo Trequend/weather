@@ -8,6 +8,10 @@
     Dmitry Balakin
   </author>
   <content src="index.html" />
+  <preference name="StatusBarBackgroundColor" value="#ffffff" />
+  <preference name="StatusBarStyle" value="default" />
+  <icon src="assets/icon.png" />
+  <hook type="before_prepare" src="utils/prebuild.js" />
   <access origin="*" />
   <allow-intent href="http://*/*" />
   <allow-intent href="https://*/*" />
@@ -15,8 +19,6 @@
   <allow-intent href="sms:*" />
   <allow-intent href="mailto:*" />
   <allow-intent href="geo:*" />
-  <icon src="assets/icon.png" />
-  <hook type="before_prepare" src="utils/prebuild.js" />
   <platform name="android">
     <allow-intent href="market:*" />
   </platform>
