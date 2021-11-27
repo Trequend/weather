@@ -1,4 +1,18 @@
-export function getIconSrc(weatherIcon: string, sunrise: Date, sunset: Date) {
+export function getIconSrc(weatherIcon: string): string;
+export function getIconSrc(
+  weatherIcon: string,
+  sunrise: Date,
+  sunset: Date
+): string;
+export function getIconSrc(
+  weatherIcon: string,
+  sunrise?: Date,
+  sunset?: Date
+): string {
+  if (!sunrise || !sunset) {
+    return `icons/${weatherIcon}.png`;
+  }
+
   const iconCode = /(\d+)/.exec(weatherIcon)?.[0];
 
   if (!iconCode) {

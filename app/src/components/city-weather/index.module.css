@@ -6,26 +6,6 @@
   margin-bottom: 11px;
 }
 
-.loading {
-  width: 100%;
-  text-align: center;
-  animation: appear 1000ms ease;
-}
-
-@keyframes appear {
-  0% {
-    opacity: 0;
-  }
-
-  75% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
 .error {
   text-align: center;
   width: 100%;

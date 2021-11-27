@@ -1,6 +1,8 @@
 import { FC, useEffect, useState } from 'react';
 import { kelvinToCelsius, unixTimestampToDate } from '../../functions';
-import { City } from '../../types/city.type';
+import { City } from '../../types';
+import { ErrorMessage } from '../error-message';
+import { Loading } from '../loading';
 import {
   MainWeatherBlock,
   GeneralWeatherBlock,
@@ -14,7 +16,7 @@ export type CityWeatherProps = {
 
 export const CityWeather: FC<CityWeatherProps> = ({ id }) => {
   const [city, setCity] = useState<City>();
-  const [error, setError] = useState<string>();
+  const [error, setError] = useState<unknown>();
 
   useEffect(() => {
     let canceled = false;
@@ -36,11 +38,7 @@ export const CityWeather: FC<CityWeatherProps> = ({ id }) => {
           return;
         }
 
-        if (error instanceof Error) {
-          setError(error.message);
-        } else {
-          setError('Unknown error');
-        }
+        setError(error);
       }
 
       if (canceled) {
@@ -60,7 +58,7 @@ export const CityWeather: FC<CityWeatherProps> = ({ id }) => {
   }, [id]);
 
   if (error) {
-    return <p className={classes.error}>{error}</p>;
+    return <ErrorMessage error={error} />;
   } else if (city) {
     const weather = city.weather[0];
     const sunrise = unixTimestampToDate(city.sys.sunrise, city.timezone);
@@ -95,6 +93,6 @@ export const CityWeather: FC<CityWeatherProps> = ({ id }) => {
       </div>
     );
   } else {
-    return <h2 className={classes.loading}>Loading...</h2>;
+    return <Loading timeout={200} />;
   }
 };

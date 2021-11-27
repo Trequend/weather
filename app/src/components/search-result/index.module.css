@@ -1,0 +1,24 @@
+.root {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.root > * {
+  margin-bottom: 20px;
+}
+
+.button {
+  font-size: 15px;
+  width: 100%;
+  background: #fdfcfc;
+  padding: 10px;
+  border-radius: 11px;
+}
+
+.empty {
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+  color: #c4c4c4;
+  padding: 10px 0;
+}

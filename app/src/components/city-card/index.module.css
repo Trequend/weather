@@ -1,0 +1,43 @@
+.root {
+  background-color: #fdfcfc;
+  border-radius: 11px;
+  padding: 25px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.temperature {
+  position: relative;
+  font-size: 60px;
+  font-weight: 500;
+  padding-right: 15px;
+  line-height: 1;
+}
+
+.temperature::after {
+  content: '°';
+  position: absolute;
+  right: 0;
+  top: 10px;
+  font-weight: normal;
+  font-size: 25px;
+}
+
+.icon {
+  width: 100px;
+  height: 100px;
+}
+
+.coord {
+  font-weight: 500;
+  font-size: 12px;
+  margin-top: 15px;
+  color: #a8a8a8;
+}

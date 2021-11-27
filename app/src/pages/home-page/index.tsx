@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CitiesSlider, Search } from '../../components';
+import { CitiesSlider, Search, SearchResult } from '../../components';
 import { AppPage } from '../../types';
 import { HOME_PATHNAME } from './constants';
 import classes from './index.module.css';
@@ -12,7 +12,7 @@ export const HomePage: AppPage = () => {
       <header className={classes.header}>
         <Search onSearch={setQuery} />
       </header>
-      <main>{query ? query : <CitiesSlider />}</main>
+      <main>{query ? <SearchResult query={query} /> : <CitiesSlider />}</main>
     </div>
   );
 };
