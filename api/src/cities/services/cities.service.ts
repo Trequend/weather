@@ -75,9 +75,8 @@ export class CitiesService implements OnModuleInit {
       return from(cities)
         .pipe(
           map((city) => {
-            return this.getCity(city.id);
+            return this.getCityWithCache(city.id);
           }),
-          concatAll(),
           concatAll()
         )
         .subscribe({
@@ -97,7 +96,7 @@ export class CitiesService implements OnModuleInit {
     });
   }
 
-  public async getCity(openWeatherId: string) {
+  public getCity(openWeatherId: string) {
     const openWeatherKey = this.config.get('openWeatherKey');
     if (!openWeatherKey) {
       throw new InternalServerErrorException('No key');
@@ -107,6 +106,14 @@ export class CitiesService implements OnModuleInit {
       .get(`https://api.openweathermap.org/data/2.5/weather`, {
         params: { id: openWeatherId, appid: openWeatherKey },
       })
+      .pipe(map((response) => response.data));
+  }
+
+  public getCityWithCache(openWeatherId: string) {
+    const port = this.config.get('port');
+
+    return this.httpService
+      .get(`http://localhost:${port}/cities/${openWeatherId}`)
       .pipe(map((response) => response.data));
   }
 
