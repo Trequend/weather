@@ -2,9 +2,7 @@
   <img src="media/logo.png" alt="App logo" width="150">
 </p>
 
-<h1 align="center">
-  Weather
-</h1>
+<h1 align="center">Weather</h1>
 
 <p align="center">
   Cordova app for weather
@@ -209,25 +207,19 @@ yarn workspace api run build
 
 ## Screenshots
 
-<h3 align="center">
-  Home
-</h3>
+<h3 align="center">Home</h3>
 
 <p align="center">
   <img src="media/screenshot-home.png" alt="Home" width="400">
 </p>
 
-<h3 align="center">
-  Search
-</h3>
+<h3 align="center">Search</h3>
 
 <p align="center">
   <img src="media/screenshot-search.png" alt="Search" width="400">
 </p>
 
-<h3 align="center">
-  City Page
-</h3>
+<h3 align="center">City Page</h3>
 
 <p align="center">
   <img src="media/screenshot-city-page.png" alt="City Page" width="400">
