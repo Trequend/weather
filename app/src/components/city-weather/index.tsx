@@ -24,7 +24,7 @@ export const CityWeather: FC<CityWeatherProps> = ({ id }) => {
     const action = async () => {
       try {
         const response = await fetch(
-          `${process.env.REACT_APP_WEATHER_API}/cities/${id}`
+          `${process.env.REACT_APP_API_URL}/cities/${id}`
         );
 
         if (!response.ok) {

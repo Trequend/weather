@@ -65,7 +65,7 @@ const fetchCities = createAsyncThunk(
     };
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_WEATHER_API}/cities?query=${state.query}&offset=${offset}&limit=${limit}`
+        `${process.env.REACT_APP_API_URL}/cities?query=${state.query}&offset=${offset}&limit=${limit}`
       );
       if (!response.ok) {
         throw new Error('Fetch error');
