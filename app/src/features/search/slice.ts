@@ -68,7 +68,7 @@ const fetchCities = createAsyncThunk(
         `${process.env.REACT_APP_API_URL}/cities?query=${state.query}&offset=${offset}&limit=${limit}`
       );
       if (!response.ok) {
-        throw new Error('Fetch error');
+        throw new Error(response.statusText);
       }
 
       const json: { total: number; cities: Array<City> } =

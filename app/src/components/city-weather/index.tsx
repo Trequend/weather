@@ -28,7 +28,7 @@ export const CityWeather: FC<CityWeatherProps> = ({ id }) => {
         );
 
         if (!response.ok) {
-          throw new Error('Fetch error');
+          throw new Error(response.statusText);
         }
 
         const json = await response.json();
