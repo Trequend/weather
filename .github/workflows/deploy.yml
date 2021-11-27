@@ -24,11 +24,6 @@ jobs:
       - name: Lint
         run: yarn run lint-project
 
-      - name: Build Backend
-        env:
-          MONGO_URL: ${{ secrets.MONGO_URL }}
-          OPEN_WEATHER_KEY: ${{ secrets.OPEN_WEATHER_KEY }}
-        run: yarn workspace api run build
       - name: Deploy Backend
         uses: akhileshns/heroku-deploy@v3.12.12
         env:
