@@ -1,0 +1,53 @@
+name: Deploy
+
+on:
+  push:
+    paths-ignore:
+      - 'docs/**'
+      - '**/README.md'
+      - 'media'
+    branches:
+      - main
+
+jobs:
+  deploy-website:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'yarn'
+
+      - name: Install
+        run: yarn install --immutable --inline-builds
+      - name: Lint
+        run: yarn run lint-project
+
+      - name: Build Backend
+        env:
+          MONGO_URL: ${{ secrets.MONGO_URL }}
+          OPEN_WEATHER_KEY: ${{ secrets.OPEN_WEATHER_KEY }}
+        run: yarn workspace api run build
+      - name: Deploy Backend
+        uses: akhileshns/heroku-deploy@v3.12.12
+        env:
+          HD_MONGO_URL: ${{ secrets.MONGO_URL }}
+          HD_OPEN_WEATHER_KEY: ${{ secrets.OPEN_WEATHER_KEY }}
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: trequend-weather-api
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          appdir: 'api'
+          procfile: 'web: npm run start-prod'
+
+      - name: Build Frontend
+        env:
+          REACT_APP_API_URL: https://trequend-weather-api.herokuapp.com
+        run: yarn workspace com.trequend.weather run build
+      - name: Deploy Frontend
+        env:
+          WEATHER_VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: npx --yes vercel ./app/build --prod --token=$WEATHER_VERCEL_TOKEN
