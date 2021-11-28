@@ -1,5 +1,5 @@
 .root {
-  padding: 44px 24px 24px 24px;
+  padding: 44px 24px 0 24px;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -15,6 +15,7 @@
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
+  padding-bottom: 24px;
 }
 
 .footer {

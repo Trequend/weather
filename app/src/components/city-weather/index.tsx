@@ -1,20 +1,22 @@
 import { FC, useEffect, useState } from 'react';
+import { Button } from '..';
 import { kelvinToCelsius, unixTimestampToDate } from '../../functions';
 import { City } from '../../types';
 import { ErrorMessage } from '../error-message';
 import { Loading } from '../loading';
 import {
-  MainWeatherBlock,
-  GeneralWeatherBlock,
   DayWeatherBlock,
+  GeneralWeatherBlock,
+  MainWeatherBlock,
 } from '../weather-blocks';
 import classes from './index.module.css';
 
 export type CityWeatherProps = {
   id: number;
+  onRemove?: () => void;
 };
 
-export const CityWeather: FC<CityWeatherProps> = ({ id }) => {
+export const CityWeather: FC<CityWeatherProps> = ({ id, onRemove }) => {
   const [city, setCity] = useState<City>();
   const [error, setError] = useState<unknown>();
 
@@ -91,9 +93,18 @@ export const CityWeather: FC<CityWeatherProps> = ({ id }) => {
           timezone={city.timezone}
           weatherIcon={weather.icon}
         />
+        {onRemove ? (
+          <Button onClick={onRemove} className={classes.button}>
+            Remove
+          </Button>
+        ) : null}
       </div>
     );
   } else {
-    return <Loading timeout={200} />;
+    return (
+      <div className={classes.loading}>
+        <Loading timeout={200} />
+      </div>
+    );
   }
 };
