@@ -193,6 +193,8 @@ yarn workspace api run build
 
 `REACT_APP_API_URL`: api url
 
+`REACT_APP_VERSION`: react app version
+
 ---
 
 ### Api Variables
