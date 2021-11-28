@@ -1,0 +1,18 @@
+.root {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.root > * {
+  margin-bottom: 5px;
+}
+
+.root > *:last-child {
+  margin-bottom: 0;
+}
+
+.title {
+  width: 100%;
+  font-size: 25px;
+  font-weight: 500;
+}

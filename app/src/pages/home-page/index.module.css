@@ -23,3 +23,7 @@
   text-align: center;
   font-size: 12px;
 }
+
+.footer > a {
+  color: #c4c4c4;
+}
