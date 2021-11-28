@@ -1,7 +1,7 @@
 {
   "name": "com.trequend.weather",
   "displayName": "Weather",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Dmitry Balakin",
   "main": "index.js",
   "homepage": "./",
