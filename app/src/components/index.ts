@@ -11,3 +11,4 @@ export {
   MainWeatherBlock,
 } from './weather-blocks';
 export { WeatherIcon } from './weather-icon';
+export { Layout } from './layout';
