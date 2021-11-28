@@ -37,7 +37,7 @@ At Vercel: https://trequend-weather.vercel.app
 
 ## Download
 
-At Android: [apk](https://github.com/Trequend/weather/releases/download/v1.0.0/weather.apk)
+At Android: [apk](https://github.com/Trequend/weather/releases/download/v1.1.0/weather.apk)
 
 ## Template
 
