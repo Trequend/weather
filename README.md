@@ -82,8 +82,8 @@ Required tools:
 Download project:
 
 ```bash
-git clone https://github.com/Trequend/fancywork.git
-cd fancywork
+git clone https://github.com/trequend/weather.git
+cd weather
 ```
 
 Install dependencies:
@@ -119,8 +119,8 @@ Required tools:
 Download project:
 
 ```bash
-git clone https://github.com/Trequend/fancywork.git
-cd fancywork
+git clone https://github.com/trequend/weather.git
+cd weather
 ```
 
 Install dependencies:
